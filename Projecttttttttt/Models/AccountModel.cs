@@ -28,9 +28,9 @@ namespace Projecttttttttt.Models
         [Required(ErrorMessage = "Please Enter Your Password")]
         public string userPassword { get; set; }
 
-        [Display(Name = "Password")]
+        [Display(Name = "Confirmation Password")]
         [DataType(DataType.Password)]
-        [Compare("userPassword", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("userPassword", ErrorMessage = "The password and confirmation password doesn't match.")]
         [Required(ErrorMessage = "Please Re-Enter Your Password")]
         public string userRePassword { get; set; }
 
