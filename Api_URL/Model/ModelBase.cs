@@ -86,6 +86,11 @@ namespace Api_URL.Model
                         respnd.Result = cmd.Parameters["@retval"].Value.ToString();
                         respnd.Message = "Successful Inserted Data!";
                     }
+                    else if(Convert.ToString(cmd.Parameters["@retval"].Value).ToString() == "100")
+                    {
+                        respnd.Result = cmd.Parameters["@retval"].Value.ToString();
+                        respnd.Message = "Data Already Exist";
+                    }
                     else
                     {
                         respnd.Result = cmd.Parameters["@retval"].Value.ToString();
