@@ -8,7 +8,7 @@ namespace Api_URL.Repository
 {
     public interface IRepository
     {
-        Task<Response<string>> userAccount(AccountModel account);
+        Task<Response<string>> userAccount(AccountModel model);
         Task<Response<string>> userAcceptAccount(acceptUserAccount acct);
     }
 }

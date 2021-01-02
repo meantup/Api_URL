@@ -17,12 +17,12 @@ namespace Api_URL.Controllers
             _repost = repost;
         }
         [HttpGet("account")]
-        public async Task<IActionResult> userAccount([FromBody] AccountModel account)
+        public async Task<IActionResult> checkUserAccount([FromBody] AccountModel model)
         {
             var returns = new Response<string>();
-            if(!string.IsNullOrEmpty(account.Username) && !string.IsNullOrEmpty(account.Password))
+            if(!string.IsNullOrEmpty(model.username) && !string.IsNullOrEmpty(model.Password))
             {
-                returns = await _repost.userAccount(account);
+                returns = await _repost.userAccount(model);
             }
             else
             {
@@ -35,7 +35,14 @@ namespace Api_URL.Controllers
         public async Task<IActionResult> acceptUserAccount([FromBody] acceptUserAccount accnt)
         {
             var res = new Response<string>();
-            if(!string.IsNullOrEmpty(accnt.username) && !string.IsNullOrEmpty(accnt.email) && !string.IsNullOrEmpty(accnt.userPassword) && !string.IsNullOrEmpty(accnt.userRePassword) && !string.IsNullOrEmpty(accnt.gender))
+            if  (!string.IsNullOrEmpty(accnt.username) && 
+                !string.IsNullOrEmpty(accnt.password) && 
+                !string.IsNullOrEmpty(accnt.firstname) && 
+                !string.IsNullOrEmpty(accnt.lastname) && 
+                !string.IsNullOrEmpty(accnt.CivilStatus) &&
+                !string.IsNullOrEmpty(Convert.ToString(accnt.bdate).ToString()) &&
+                !string.IsNullOrEmpty(accnt.religion) &&
+                !string.IsNullOrEmpty(accnt.bplace))
             {
                 res = await _repost.userAcceptAccount(accnt);
             }

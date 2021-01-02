@@ -73,7 +73,6 @@ namespace WebServiceMethod.WebServiceMethod
                     cmd.Parameters.Add("@fname", SqlDbType.VarChar, 50).Value = user.fname;
                     cmd.Parameters.Add("@lname", SqlDbType.VarChar, 50).Value = user.lname;
                     cmd.Parameters.Add("@cstatus", SqlDbType.VarChar, 50).Value = user.civilstatus;
-                    cmd.Parameters.Add("@age", SqlDbType.Int).Value = user.age;
                     cmd.Parameters.Add("@bdate", SqlDbType.VarChar, 50).Value = user.bdate;
                     cmd.Parameters.Add("@religion", SqlDbType.VarChar, 50).Value = user.religion;
                     cmd.Parameters.Add("@bplace", SqlDbType.VarChar, 50).Value = user.bplace;
