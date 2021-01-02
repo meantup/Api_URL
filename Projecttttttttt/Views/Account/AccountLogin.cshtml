@@ -4,7 +4,7 @@
     ViewData["Title"] = "AccountLogin";
 }
 
-<h1>AccountLogin</h1>
+@*<h1>AccountLogin</h1>
 
 <hr />
 
@@ -34,30 +34,49 @@
         <button type="button" class="cancelbtn">Cancel</button>
         <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
-</form>
+</form>*@
 
-
-@*<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AccountLogin">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="username" class="control-label"></label>
-                <input asp-for="username" class="form-control" />
-                <span asp-validation-for="username" class="text-danger"></span>
+<div class="col-md-6 offset-3">
+    <div class="card-title">
+        <div class="card-header"><i class="fa fa-user-lock" style="font-size:50px;"></i></div>
+        <div class="card-header">
+            <div class="card-body">
+                <form asp-action="AccountLogin" class="offset-2" method="post">
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-user-circle"></i>
+                                </span>
+                            </div>
+                            <input id="username" type="text" asp-for="username" placeholder="Username" class="form-control border-left-0 border-md">
+                        </div>
+                        <span asp-validation-for="username" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </div>
+                            <input id="Password" type="password" asp-for="userPassword" placeholder="Password" class="form-control border-left-0 border-md">
+                        </div>
+                        <span asp-validation-for="userPassword" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row col-lg-9 mb-6">
+                        <div class="input-group">
+                            <input type="submit" value="Save" name="Save" class="form-control border-left-0 border-md btn-success" style="width:115px"> &nbsp; &nbsp;
+                            <input type="reset" value="Cancel" name="Cancel" class="form-control border-left-0 border-md btn-danger" style="width:115px">
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="userPassword" class="control-label"></label>
-                <input asp-for="userPassword" class="form-control" />
-                <span asp-validation-for="userPassword" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>*@
+</div>
 
 <div>
     <a asp-action="Index">Back to List</a>

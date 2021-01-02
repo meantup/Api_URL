@@ -19,7 +19,7 @@ namespace Api_URL.Model
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             return builder.Build().GetSection("ConnectionStrings").GetSection("DefaultConnection").Value;
         }
-        public async Task<Response<string>> userAccount(AccountModel account)
+        public async Task<Response<string>> userAccount(AccountModel model)
         {
             #region for UserLogin
             var response = new Response<string>();
@@ -29,10 +29,10 @@ namespace Api_URL.Model
                 using (SqlConnection con = new SqlConnection(connection))
                 {
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("usp_UserLogin", con);
+                    SqlCommand cmd = new SqlCommand("usp_CheckExistUser", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@username", SqlDbType.NVarChar, 50).Value = account.Username;
-                    cmd.Parameters.Add("@Password", SqlDbType.NVarChar, 50).Value = account.Password;
+                    cmd.Parameters.Add("@user", SqlDbType.NVarChar, 50).Value = model.username;
+                    cmd.Parameters.Add("@pass", SqlDbType.NVarChar, 50).Value = model.Password;
                     cmd.Parameters.Add("@retval", SqlDbType.Int).Direction = ParameterDirection.Output;
                     await Task.Run(() => cmd.ExecuteNonQuery());
 
@@ -70,14 +70,16 @@ namespace Api_URL.Model
                 using (SqlConnection sql = new SqlConnection(conn))
                 {
                     sql.Open();
-                    SqlCommand cmd = new SqlCommand("usp_InsertUser", sql);
+                    SqlCommand cmd = new SqlCommand("usp_InsertUserDetails", sql);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@username", SqlDbType.NVarChar, 50).Value = accnt.username;
-                    cmd.Parameters.Add("@age", SqlDbType.Int).Value = accnt.age;
-                    cmd.Parameters.Add("@email", SqlDbType.NVarChar, 50).Value = accnt.email;
-                    cmd.Parameters.Add("@password", SqlDbType.NVarChar, 50).Value = accnt.userPassword;
-                    cmd.Parameters.Add("@RePassword", SqlDbType.NVarChar, 50).Value = accnt.userRePassword;
-                    cmd.Parameters.Add("@Gender", SqlDbType.NVarChar, 50).Value = accnt.gender;
+                    cmd.Parameters.Add("@user", SqlDbType.NVarChar, 50).Value = accnt.username;
+                    cmd.Parameters.Add("@pass", SqlDbType.NVarChar, 50).Value = accnt.password;
+                    cmd.Parameters.Add("@fname", SqlDbType.NVarChar, 50).Value = accnt.firstname;
+                    cmd.Parameters.Add("@lname", SqlDbType.NVarChar, 50).Value = accnt.lastname;
+                    cmd.Parameters.Add("@cstatus", SqlDbType.NVarChar, 50).Value = accnt.CivilStatus;
+                    cmd.Parameters.Add("@bdate", SqlDbType.Date).Value = accnt.bdate;
+                    cmd.Parameters.Add("@religion", SqlDbType.NVarChar, 50).Value = accnt.religion;
+                    cmd.Parameters.Add("@bplace", SqlDbType.NVarChar, 50).Value = accnt.bplace;
                     cmd.Parameters.Add("@retval", SqlDbType.Int).Direction = ParameterDirection.Output;
                     await Task.Run(() => cmd.ExecuteNonQuery());
 

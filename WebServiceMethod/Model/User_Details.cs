@@ -13,7 +13,6 @@ namespace WebServiceMethod.Model
         public string fname { get; set; }
         public string lname { get; set; }
         public string civilstatus { get; set; }
-        public int age { get; set; }
         public DateTime bdate { get; set; }
         public string religion { get; set; }
         public string bplace { get; set; }

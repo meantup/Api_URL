@@ -4,49 +4,139 @@
     ViewData["Title"] = "Account";
 }
 
-<h1>Account</h1>
-
-<hr />
+@*<h1>Account</h1>*@
 
 
-<div class="row">
-    <div class="col-md-4">
-        <form class="co" asp-action="Account">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="username" class="control-label"></label>
-                <input asp-for="username" class="form-control" />
-                <span asp-validation-for="username" class="text-danger"></span>
+<div class="col-md-6 offset-3">
+    <div class="card-title">
+        <div class="card-header"><i class="fa fa-user-plus" style="font-size:50px;"></i></div>
+        <div class="card-header">
+            <div class="card-body">
+                <form asp-action="Account" class="offset-2">
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            <input id="firstname" type="text" asp-for="fname" placeholder="First Name" class="form-control border-left-0 border-md">
+                        </div>
+                        <span asp-validation-for="fname" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            <input id="lastname" type="text" asp-for="lname" placeholder="Last Name" class="form-control border-left-0 border-md">
+                        </div>
+                        <span asp-validation-for="lname" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-life-ring"></i>
+                                </span>
+                            </div>
+                            <select class="custom-select" id="cstatus">
+                                <option selected>Civil Status</option>
+                                <option value="single">Single</option>
+                                <option value="married">Married</option>
+                                <option value="widowed">Widowed </option>
+                                <option value="separated">Separated </option>
+                                <option value="divorced">Divorced </option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="civilStatus" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-calendar"></i>
+                                </span>
+                            </div>
+                            <input id="birth" type="date" asp-for="bdate" placeholder="Birth Date" class="form-control border-left-0 border-md">
+                        </div>
+                        <span asp-validation-for="bdate" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-place-of-worship"></i>
+                                </span>
+                            </div>
+                            <input id="religion" type="text" asp-for="religion" placeholder="Religion" class="form-control border-left-0 border-md">
+                        </div>
+                        <span asp-validation-for="religion" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-address-card"></i>
+                                </span>
+                            </div>
+                            <input id="birthplace" type="text" asp-for="bplace" placeholder="Birth of Place" class="form-control border-left-0 border-md">
+                        </div>
+                        <span asp-validation-for="bplace" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-user-circle"></i>
+                                </span>
+                            </div>
+                            <input id="username" type="text" asp-for="username" placeholder="Username" class="form-control border-left-0 border-md">
+                        </div>
+                        <span asp-validation-for="username" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </div>
+                            <input id="Password" type="password" asp-for="userPassword" placeholder="Password" class="form-control border-left-0 border-md">
+                        </div>
+                        <span asp-validation-for="userPassword" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row">
+                        <div class="input-group col-lg-9 mb-7">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text px-3 border-md border-right-0">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </div>
+                            <input id="Password1" type="password" asp-for="userRePassword" placeholder="Confirm Password" class="form-control border-left-0 border-md">
+                        </div>
+                        <span asp-validation-for="userRePassword" class="text-danger"></span>
+                    </div>
+                    &nbsp;
+                    <div class="row col-lg-9 mb-6">
+                        <div class="input-group">
+                            <input type="submit" value="Save" name="Save" class="form-control border-left-0 border-md btn-success" style="width:115px"> &nbsp; &nbsp; 
+                            <input type="reset" value="Cancel" name="Cancel" class="form-control border-left-0 border-md btn-danger" style="width:115px">
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="age" class="control-label"></label>
-                <input asp-for="age" class="form-control" />
-                <span asp-validation-for="age" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="email" class="control-label"></label>
-                <input asp-for="email" class="form-control" />
-                <span asp-validation-for="email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="userPassword" class="control-label"></label>
-                <input asp-for="userPassword" class="form-control" />
-                <span asp-validation-for="userPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="userRePassword" class="control-label"></label>
-                <input asp-for="userRePassword" class="form-control" />
-                <span asp-validation-for="userRePassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="gender" class="control-label"></label>
-                <input asp-for="gender" class="form-control" />
-                <span asp-validation-for="gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
