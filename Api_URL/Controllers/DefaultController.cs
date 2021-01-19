@@ -16,42 +16,55 @@ namespace Api_URL.Controllers
         {
             _repost = repost;
         }
-        [HttpGet("account")]
+        [HttpPost("account")]
         public async Task<IActionResult> checkUserAccount([FromBody] AccountModel model)
         {
-            var returns = new Response<string>();
-            if(!string.IsNullOrEmpty(model.username) && !string.IsNullOrEmpty(model.Password))
+            Response<List<acceptUserAccount>> retval = new Response<List<acceptUserAccount>>();
+            retval = await _repost.userAccount(model);
+            if (retval.response == 200)
             {
-                returns = await _repost.userAccount(model);
+                retval.Message = "Record Found";
             }
-            else
+            else if (retval.response == 100)
             {
-                returns.Message = "Empty Field";
-                returns.isSuccess = false;
+                retval.Message = "No Record Found";
             }
-            return Ok(returns);
+            else if (retval.response == 500)
+            {
+                retval.Message = "Internal Server Error";
+                retval.isSuccess = false;
+            }
+            else if(retval.response == 400)
+            {
+                retval.Message = "Bad Request";
+                retval.isSuccess = false;
+            }
+            return Ok(retval);
         }
         [HttpPost("userAccount")]
         public async Task<IActionResult> acceptUserAccount([FromBody] acceptUserAccount accnt)
         {
             var res = new Response<string>();
-            if  (!string.IsNullOrEmpty(accnt.username) && 
-                !string.IsNullOrEmpty(accnt.password) && 
-                !string.IsNullOrEmpty(accnt.firstname) && 
-                !string.IsNullOrEmpty(accnt.lastname) && 
-                !string.IsNullOrEmpty(accnt.CivilStatus) &&
-                !string.IsNullOrEmpty(Convert.ToString(accnt.bdate).ToString()) &&
-                !string.IsNullOrEmpty(accnt.religion) &&
-                !string.IsNullOrEmpty(accnt.bplace))
+            if (ModelState.IsValid)
             {
                 res = await _repost.userAcceptAccount(accnt);
             }
-            else
-            {
-                res.Message = "Some Fields is Empty";
-                res.isSuccess = false;
-            }
+            res.isSuccess = false;
             return Ok(res);
+        }
+        [HttpGet("api/Inquiry/{startDate}/{endDate}")]
+        public async Task<IActionResult> Inquiry(/*[FromBody] DateiNQUIRY dateInput*/string startDate, string endDate)
+        {
+            List<InquiryDetails> list = new List<InquiryDetails>();
+            list = await _repost.getDATE(startDate, endDate);
+            return Ok(list);
+        }
+        [HttpPost("api/Order")]
+        public async Task<IActionResult> OrderDetails([FromBody] ItemOrderDetails itm)
+        {
+            var responsecode = new response<string>();
+            responsecode = await _repost.postItem(itm);
+            return Ok(responsecode);
         }
     }   
 }
