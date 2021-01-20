@@ -8,8 +8,10 @@ namespace Api_URL.Repository
 {
     public interface IRepository
     {
-        Task<Response<string>> userAccount(AccountModel model);
+        Task<Response<List<acceptUserAccount>>> userAccount(AccountModel model);
         Task<Response<string>> userAcceptAccount(acceptUserAccount acct);
+        Task<List<ItemOrderDetails>> getDATE(DateiNQUIRY tdt);
+        Task<response<string>> postItem(ItemOrderDetails itm);
     }
 }
  
