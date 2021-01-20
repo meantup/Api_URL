@@ -53,10 +53,10 @@ namespace Api_URL.Controllers
             return Ok(res);
         }
         [HttpGet("api/Inquiry/{startDate}/{endDate}")]
-        public async Task<IActionResult> Inquiry(/*[FromBody] DateiNQUIRY dateInput*/string startDate, string endDate)
+        public async Task<IActionResult> Inquiry(DateiNQUIRY dateInput)
         {
-            List<InquiryDetails> list = new List<InquiryDetails>();
-            list = await _repost.getDATE(startDate, endDate);
+            List<ItemOrderDetails> list = new List<ItemOrderDetails>();
+            list = await _repost.getDATE(dateInput);
             return Ok(list);
         }
         [HttpPost("api/Order")]

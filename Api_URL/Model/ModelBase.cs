@@ -172,10 +172,10 @@ namespace Api_URL.Model
             return respnd;
             #endregion
         }
-        public async Task<List<InquiryDetails>> getDATE(string startDate, string endDate)
+        public async Task<List<ItemOrderDetails>> getDATE(DateiNQUIRY tdt)
         {
             #region insertAccount
-            List<InquiryDetails> response = new List<InquiryDetails>();
+            List<ItemOrderDetails> response = new List<ItemOrderDetails>();
             var conn = GetConfiguration1();
             try
             {
@@ -185,16 +185,15 @@ namespace Api_URL.Model
                     DataTable dt = new DataTable();
                     SqlCommand cmd = new SqlCommand("usp_InquiryDate", sql);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@from", SqlDbType.DateTime).Value = DateTime.Parse(startDate);
-                    cmd.Parameters.Add("@to", SqlDbType.DateTime).Value = DateTime.Parse(endDate);
-                    //cmd.Parameters.Add("@retval", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@from", SqlDbType.DateTime).Value = DateTime.Parse(tdt.startDate);
+                    cmd.Parameters.Add("@to", SqlDbType.DateTime).Value = DateTime.Parse(tdt.endDate);
                     SqlDataAdapter ad = new SqlDataAdapter(cmd);
                     await Task.Run(() => ad.Fill(dt));
-                    var set = dt.AsEnumerable().Select(x => new InquiryDetails
+                    var set = dt.AsEnumerable().Select(x => new ItemOrderDetails
                     {
-                        Iname = x["IName"].ToString(),
-                        Idesc = x["IDesc"].ToString(),
-                        Icode = x["ICode"].ToString(),
+                        iname = x["IName"].ToString(),
+                        idesc = x["IDesc"].ToString(),
+                        icode = x["ICode"].ToString(),
                         tdt = DateTime.Parse(x["TDT"].ToString()),
                         amount = Decimal.Parse(x["amount"].ToString()),
                         quantity = int.Parse(x["quantity"].ToString())
@@ -226,7 +225,6 @@ namespace Api_URL.Model
                     cmd.Parameters.Add("@iname", SqlDbType.NVarChar, 50).Value = itm.iname;
                     cmd.Parameters.Add("@idesc", SqlDbType.NVarChar, 50).Value = itm.idesc;
                     cmd.Parameters.Add("@icode", SqlDbType.NVarChar, 50).Value = itm.icode;
-                    cmd.Parameters.Add("@tdt", SqlDbType.DateTime).Value = itm.tdt;
                     cmd.Parameters.Add("@amount", SqlDbType.Decimal, 18).Value = itm.amount;
                     cmd.Parameters.Add("@quantity", SqlDbType.Int).Value = itm.quantity;
                     cmd.Parameters.Add("@retval", SqlDbType.Int).Direction = ParameterDirection.Output;

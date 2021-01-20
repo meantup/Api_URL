@@ -30,19 +30,10 @@ namespace Api_URL.Model
 
         public string bplace { get; set; }
     }
-    public class InquiryDetails
-    {
-        public string Iname { get; set; }
-        public string Idesc { get; set; }
-        public string Icode { get; set; }
-        public DateTime tdt { get; set; }
-        public decimal amount { get; set; }
-        public int quantity { get; set; }
-    }
     public class DateiNQUIRY
     {
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
+        public string startDate { get; set; }
+        public string endDate { get; set; }
     }
     public class ItemOrderDetails
     {
