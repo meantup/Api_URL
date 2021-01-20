@@ -114,6 +114,7 @@ namespace Api_URL.Model
                         respnd.Result = cmd.Parameters["@retval"].Value.ToString();
                         respnd.Message = "Successful Inserted Data!";
                     }
+<<<<<<< HEAD
                     else if (Convert.ToString(cmd.Parameters["@retval"].Value).ToString() == "404")
                     {
                         respnd.Result = cmd.Parameters["@retval"].Value.ToString();
@@ -158,6 +159,9 @@ namespace Api_URL.Model
                         respnd.Message = "Successful Inserted Data!";
                     }
                     else if (Convert.ToString(cmd.Parameters["@retval"].Value).ToString() == "404")
+=======
+                    else
+>>>>>>> parent of 07134d8 (changes)
                     {
                         respnd.Result = cmd.Parameters["@retval"].Value.ToString();
                         respnd.Message = "Unsuccesful Inserted Data!";
